@@ -24,15 +24,15 @@ const a=[
     {
         path:'/login',
         name:"login",
-        component:()=> import ('@/views/logon/index.vue'),
+        component:()=> import ('@/views/user-login/index.vue'),
         meta:{
             login:true
         }
     },
     {
-        path:'/edit',
-        name:"edit",
-        component:()=> import ('@/views/user-space/edit.vue')
+        path:'/create',
+        name:"create",
+        component:()=> import ('@/views/create/create.vue')
     },
     {
         path:'/edit',
@@ -43,6 +43,7 @@ const a=[
         path:'/space',
         name:"space",
         component:()=> import ('@/views/user-space/space.vue'),
+        redirect:'/space/works',
         children:[
             {
                 path:'works',
