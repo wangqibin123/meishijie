@@ -38,6 +38,34 @@ const router = new Router({
     ]
 });
 
-
+router.beforeEach(async(to, from, next) => {
+    const token =localStorage.getItem('token')||''
+    const isLogin = !!token;
+    const data= await userInfo();
+    Store.commit('changeUserInfo',data.data);
+    if(to.matched.some(item=>item.meta.login)){
+         if(isLogin){
+             if(data.error === 400){
+                 next({name:'login'})
+                 localStorage.removeItem('token')
+                 return
+             }
+             if(to.name==='login'){
+                 next({name:'home'})
+             }else{
+                 next();
+             }
+              return
+         }
+         if(!isLogin && to.name === 'login'){
+             next();
+         }
+         if(!isLogin && to.name !== 'login'){
+             next({name:'login'});
+         }
+    }else{
+        next()
+    }
+ })
 
 export default router;
