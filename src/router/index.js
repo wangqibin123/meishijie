@@ -23,7 +23,18 @@ const a=[
     {
         path:'/login',
         name:"login",
-        component:()=> import ('@/views/logon/index.vue')
+        component:()=> import ('@/views/user-login/index.vue'),
+        meta:{
+            b:'true'
+        }
+    },
+    {
+        path:'/create',
+        name:"create",
+        component:()=> import ('@/views/create/create.vue'),
+        meta:{
+            b:'true'
+        }
     }
 ]
 const router = new Router({
