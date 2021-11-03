@@ -21,7 +21,13 @@ const a=[
         meta:{
             b:'true'
         }
-    }
+    },
+{
+path:'/recipe',
+name:'recipe',
+component:()=> import ('@/views/recipe/recipe.vue'),
+
+}
 ]
 const router = new Router({
     mode:"history",
