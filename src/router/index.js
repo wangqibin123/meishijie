@@ -21,6 +21,14 @@ const a=[
         meta:{
             b:'true'
         }
+    },
+    {
+        path:'/create',
+        name:"create",
+        component:()=> import ('@/views/create/create.vue'),
+        meta:{
+            b:'true'
+        }
     }
 ]
 const router = new Router({
