@@ -8,6 +8,7 @@ import  Store  from '@/store'
 
 
 import Home from '@/views/home/Home.vue'
+
 const a=[
     {
         path:'/car',
@@ -23,18 +24,68 @@ const a=[
     {
         path:'/login',
         name:"login",
-        component:()=> import ('@/views/user-login/index.vue'),
+        component:()=> import ('@/views/logon/index.vue'),
         meta:{
-            b:'true'
+            login:true
         }
     },
     {
-        path:'/create',
-        name:"create",
-        component:()=> import ('@/views/create/create.vue'),
-        meta:{
-            b:'true'
-        }
+        path:'/edit',
+        name:"edit",
+        component:()=> import ('@/views/user-space/edit.vue')
+    },
+    {
+        path:'/edit',
+        name:"edit",
+        component:()=> import ('@/views/user-space/edit.vue')
+    },
+    {
+        path:'/space',
+        name:"space",
+        component:()=> import ('@/views/user-space/space.vue'),
+        children:[
+            {
+                path:'works',
+                name:'works',
+                title:'作品',
+                component:()=> import ('@/views/user-space/menu-list.vue'),
+                meta:{
+                    login:true
+                }
+            },
+            {
+                path:'fans',
+                name:'fans',
+                title:'我的粉丝',
+                component:()=> import ('@/views/user-space/fans.vue'),
+                meta:{
+                    login:true
+                }
+            },
+            {
+                path:'following',
+                name:'following',
+                title:'关注',
+                component:()=> import ('@/views/user-space/fans.vue'),
+                meta:{
+                    login:true
+                }
+            },
+            {
+                path:'collection',
+                name:'collection',
+                title:'收藏',
+                component:()=> import ('@/views/user-space/menu-list.vue'),
+                meta:{
+                    login:true
+                }
+            }
+        ],
+    },
+    {
+        path:'/menu-list',
+        name:"menu-list",
+        component:()=> import ('@/views/user-space/menu-list.vue')
     }
 ]
 const router = new Router({
@@ -50,7 +101,7 @@ const router = new Router({
 });
 
 router.beforeEach(async(to, from, next) => {
-    const token =localStorage.getItem('token')||''
+    const token =localStorage.getItem('token')
     const isLogin = !!token;
     const data= await userInfo();
     Store.commit('changeUserInfo',data.data);
