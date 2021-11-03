@@ -17,8 +17,8 @@
             <a href="javascript:;" class="collection" @click="loginout">退出</a>
           </el-col>
           <el-col :span="6" :offset="3" class="avatar-box" v-if="!isLogin">
-            <router-link :to="{name:'login'}" class="user-name">登录</router-link>
-            <router-link to="" class="collection">注册</router-link>
+            <router-link :to="{name:'login',query:{'name':'login'}}" class="user-name">登录</router-link>
+            <router-link :to="{name:'login',query:{'name':'second'}}" class="collection">注册</router-link>
           </el-col>
         </el-row>
       </div>
